@@ -8,7 +8,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    
+      <!-- Chosen -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
 </head>
 
 <body>
@@ -45,7 +47,7 @@
 
 
                         <!-- survey questions -->
-                        <div class="browser-default col s12">
+                        <div class="input-field col s12">
                             <h3>Question 1</h3>
                             <h5>Your mind is always buzzing with unexplored ideas and plans.</h5>
                             <select id="q1">
@@ -202,7 +204,7 @@
     </div>
 
     <script type="text/javascript">
-
+ 
 
         $(document).ready(function () {
             $('select').formSelect();
@@ -220,10 +222,50 @@
                 endingTop: '10%'
             });
         });
+        // Chosen CSS
+ var config = {
+      ".chosen-select": {},
+      ".chosen-select-deselect": {
+        allow_single_deselect: true
+      },
+      ".chosen-select-no-single": {
+        disable_search_threshold: 10
+      },
+      ".chosen-select-no-results": {
+        no_results_text: "Oops, nothing found!"
+      },
+      ".chosen-select-width": {
+        width: "95%"
+      }
+    };
+    for (var selector in config) {
+      $(selector).chosen(config[selector]);
+    }
         // submit button
         $('#submitButton').on('click', function (event) {
             event.preventDefault();
-            // user inputs
+            
+            // Form validation
+      function validateForm() {
+        var isValid = true;
+        $(".validate").each(function() {
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+
+        $(".input-field").each(function() {
+
+          if ($(this).val() === "") {
+            isValid = false;
+          }
+        });
+        return isValid;
+      }
+
+      // If all required fields are filled
+      if (validateForm()) {
+        // Create an object for the user"s data
            
             var userInput = {
                 name: $('#Name').val(),
@@ -250,7 +292,9 @@
 
                     $('#modal1').modal('open');
                 });
-             
+            } else {
+        alert("Please fill out all fields before submitting!");
+      }
         });
     </script>
 </body>
