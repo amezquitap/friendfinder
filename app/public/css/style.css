@@ -1,0 +1,31 @@
+body {
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     
+}
+
+main{
+    margin-top: 10%;
+}
+h1 {
+    font-weight: bold;
+    
+}
+
+ h2 {
+    font-weight: 200;
+    font-size: 24px;
+}
+
+#navLinks {
+    margin-right: 340px;
+   
+}
+
+.panel{
+   margin: 50px;
+}
+
+#content {
+    margin: 50px;
+}
